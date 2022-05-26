@@ -1,0 +1,18 @@
+{% include 'index.html' %}
+<div >
+    <h1 >Your answers to {{ survey.title }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        {% for question, form in question_forms %}
+        <div>
+            <div>
+                <h4>
+                    Question {{ forloop.counter }}: {{ question.prompt }}
+                </h4>
+            </div>
+        {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <div class="tile">
+            <div class="tile-body">Add Questions to <h1>"{{survey.title}}"</h1></div>
+            <br>
+
+            <br><br>
+            {% for question in questions %}
+            <div class="col-lg-4">
+                <div class="bs-component">
+                    <div class="card mb-3 text-white
+              {% cycle 'bg-primary' 'bg-success' 'bg-info' 'bg-warning' 'bg-danger' 'bg-dark' %}">
+                        <div class="card-body">
+                            <blockquote class="card-blockquote">
+                                <p><h4>Question {{ forloop.counter }}): {{ question.text }}</h4></p>
+                                <footer>Options:
+                                    <cite title="Source Title">{{ question.answer_type }}</cite>
+                                </footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+                            <br><br>
+                        <div class="tile-footer">
+            </div>
+            <div class="form-group row col-md-8">
+
+                <a href="{% url 'survey_add_question' survey.pk %}" class="btn btn-info btn-lg">
+                    Add a question</a>&nbsp;&nbsp;
+                {% if questions|length > 0 %}
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary btn-lg">Activate survey</button>&nbsp;&nbsp;
+                </form>
+                &nbsp;&nbsp;<a href="{% url 'survey_list' %}" class="btn btn-secondary btn-lg">Back</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

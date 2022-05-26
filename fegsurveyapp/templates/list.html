@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+{% block title %}
+Create Survey
+{% endblock %}
+{% block content %}
+<div class="tile">
+    <div class="tile-body"><h1>Your Surveys</h1></div>
+    {% if surveys %}
+    <h2></h2>
+<table class="table table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid"
+       aria-describedby="sampleTable_info">
+    <thead>
+        <tr role="row">
+        <th class="sorting_asc" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-sort="ascending"
+            aria-label="Name: activate to sort column descending">Title
+        </th>
+        <th class="sorting" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1"
+            aria-label="Position: activate to sort column ascending" >Created At
+        </th>
+        <th class="sorting" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1"
+            aria-label="Office: activate to sort column ascending">Actions
+        </th>
+    </tr>
+        </thead>
+        <tbody>
+            {% for survey in surveys %}
+            <tr role="row" class="even">
+                <td>{{ survey.title }}</td>
+                <td>{{ survey.pub_date }}</td>
+                <td>
+                    {% if not survey.is_active %}
+                    <a href="{% url 'survey_detail' survey.pk %}">
+                        <button class="btn btn-primary">view</button>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'survey_edit' survey.pk %}">
+                        <button class="btn btn-secondary btn-lg">edit</button>
+                    </a>
+                    {% endif %}
+                            <br><br>
+                    <form method="post" action="{% url 'survey_delete' survey.pk %}" style="display: inline-block;">
+                        {% csrf_token %}
+                        <button class="btn btn-danger btn-lg">delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h2 class="ui header">Your surveys
+        <div class="sub header">You don't have any surveys yet, try creating one first.</div>
+    </h2>
+    {% endif %}
+</div>
+{% endblock %}

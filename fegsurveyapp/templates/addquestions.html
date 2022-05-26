@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% block title %}Question - Surveys{% endblock %}
+{% block content %}
+<div class="tile">
+    <div class="tile-body">Add Questions to <h1>"{{survey.title}}"</div><br><br>
+    <form class="form-horizontal" method="post">
+        {% csrf_token %}
+        {% for fields in form %}
+        <div class="form-group">
+            <label class="col-md-12">{{ fields.label_tag }}</label>
+            <div class="col-md-6">
+                {{fields}}
+            </div>
+        </div>
+                {% endfor %}
+        <br><br>
+        <div class="tile-footer">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-3">
+                    <button class="btn btn-primary btn-lg" type="submit" href="{% url 'survey_add_question' survey.pk %}">Create question</button>&nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-secondary btn-lg" href="#"></i>Cancel</a>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+{% endblock %}

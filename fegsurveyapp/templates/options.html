@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+{% block title %}Question - Surveys{% endblock %}
+{% block content %}
+<div class="tile">
+    <div class="tile-body">Add answers to question <h1>"{{question.text}}"</h1></div>
+    <br><br>
+    <form class="form-horizontal" method="post" id="sample_form">
+        {% csrf_token %}
+        {% for option in options %}
+        <div class="list-group">
+            <a class="list-group-item">{{ forloop.counter }}) {{ option.text }}</a>
+            <button class="btn btn-danger btn-lg remove-form-btn">-</button>&nbsp;&nbsp;&nbsp;
+        </div>
+        {% endfor %}
+        <br>
+        <br>
+        {% for field in form %}
+        <div class="form-group row col-md-8">
+                {{field}}
+        </div>
+        <br>
+        <br>
+        <button class="btn btn-info btn-lg ">+</button>&nbsp;&nbsp;&nbsp;
+        {% endfor %}
+    </form>
+    <div class="tile-footer">
+        {% if options|length > 0 %}
+
+        <button class="btn btn secondary"><a href="{% url 'survey_edit' survey.pk %}">
+            <div>Done adding options</div>
+        </a></button>
+        {% endif %}
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+
+    $(document).ready(function() {
+            e.preventDefault();
+        $(".add-form-btn").click(function(e) {
+
+
+        })
+    });
+        $(document).on("click", ".remove-form-btn", function(e) {
+            e.preventDefault();
+            let row_items = $(this).parent();
+            $(row_items).remove();
+        });
+
+
+    </script>
+    {% endblock %}
+
+
+
+

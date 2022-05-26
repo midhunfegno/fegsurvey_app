@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% block content %}
+<h1>Survey List</h1>
+<br>
+<br>
+{% for survey in surveys %}
+
+
+<h4>Survey no :{{forloop.counter}}&nbsp;&nbsp;&nbsp;
+    <a href="{% url 'survey_start' survey.pk %}">{{survey.title}}</a>
+</h4>
+<br>
+{% endfor %}
+{% endblock %}

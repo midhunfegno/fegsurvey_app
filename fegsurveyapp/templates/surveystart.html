@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+{% block title %}Start - Surveys{% endblock %}
+
+{% block content %}
+<div>
+    <h1>{{ survey.title }}
+        <div>You have been invited to take this survey</div>
+    </h1>
+    <form method="post" action="{% url 'survey_start' survey.pk %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Start survey</button>
+    </form>
+</div>
+{% endblock %}
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--</body>-->
+<!--</html>-->

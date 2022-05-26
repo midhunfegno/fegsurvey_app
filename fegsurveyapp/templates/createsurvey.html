@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% block title %}
+Create Survey
+{% endblock %}
+{% block content %}
+<div class="tile">
+    <div class="tile-body"><h1> Create New Survey</h1></div>
+    <br><br>
+    <form class="form-horizontal" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            <label class="col-md-6">{{ field.label_tag }}</label>
+            <div class="col-md-6">
+             {{ field }}
+            </div>
+        </div>
+                <br><br>
+        <div class="tile-footer">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-3">
+                    <button class="btn btn-primary btn-lg" type="submit" href="{% url 'survey_list' %}">Create</button>&nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-secondary btn-lg" href="#"></i>Cancel</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </form>
+</div>
+{% endblock %}

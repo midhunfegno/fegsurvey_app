@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{% block title %}View - Surveys{% endblock %}
+
+{% block content %}
+<div class="tile">
+    <div class="tile-body"><h1>{{ survey.title }} -<small>Questions and Options</small></h1></div>
+    {% for question in questions %}
+    <div class="col-md-12">
+        <div class="bs-component">
+            <div class="card mb-1 text-white
+              {% cycle 'bg-primary' 'bg-success' 'bg-info' 'bg-warning' 'bg-danger' 'bg-dark' %}">
+                <div class="card-body">
+                    <blockquote class="card-blockquote">
+                        <h2>Question {{ forloop.counter }} / {{ questions|length }}:&nbsp; {{ question.text }}</h2>
+                        {% for option in question.answers_set.all %}
+                        <footer>
+                            <cite title="Source Title"> {{ forloop.counter }}) &nbsp; &nbsp; {{option.text}}</cite>
+
+                        </footer>
+                        <br>
+                        {% endfor %}
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+

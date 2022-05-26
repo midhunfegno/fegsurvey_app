@@ -1,0 +1,193 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="5">
+            <item index="0" class="java.lang.String" itemvalue="v-model" />
+            <item index="1" class="java.lang.String" itemvalue="v-show" />
+            <item index="2" class="java.lang.String" itemvalue=":selected" />
+            <item index="3" class="java.lang.String" itemvalue="v-for" />
+            <item index="4" class="java.lang.String" itemvalue="@click" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="PyCallByClassInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyNoneFunctionAssignmentInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="false" level="WARNING" enabled_by_default="false">
+      <option name="ignoredPackages">
+        <value>
+          <list size="0" />
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="E305" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N806" />
+          <option value="N801" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyShadowingBuiltinsInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredNames">
+        <list>
+          <option value="format" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="oscar.apps.partner.models.Partner.objects" />
+          <option value="oscar.apps.catalogue.models.ProductClass.objects" />
+          <option value="apps.enquiry.models.Enquiry.objects" />
+          <option value="apps.enquiry.models.Enquiry.id" />
+          <option value="django.db.models.fields.related.ForeignKey.all_products" />
+          <option value="apps.availability.pincode.views.*" />
+          <option value="apps.menu.models.Food.objects" />
+          <option value="apps.menu.models.Category.objects" />
+          <option value="apps.stockrecord.models.StockRecord.objects" />
+          <option value="apps.vendor.models.Restaurant.objets" />
+          <option value="apps.vendor.models.Restaurant.objects" />
+          <option value="apps.vendor.models.Table.objects" />
+          <option value="django.db.models.fields.related.ForeignKey.primary_color" />
+          <option value="django.db.models.fields.related.ForeignKey.background_color" />
+          <option value="django.db.models.fields.related.ForeignKey.secondary_color" />
+          <option value="django.db.models.fields.related.ForeignKey.content_color" />
+          <option value="apps.complaints.models.AssignComplaintLog.objects" />
+          <option value="apps.complaints.models.AssignComplaint.objects" />
+          <option value="apps.complaints.models.Complaint.product_id" />
+          <option value="django.db.models.fields.related.ManyToManyField.all" />
+          <option value="apps.complaints.models.Complaint.*" />
+          <option value="apps.complaints.models.active_assignment.*" />
+          <option value="apps.catalogue.models.Location.objects" />
+          <option value="apps.complaints.models.AssignComplaint.*" />
+          <option value="apps.user.abstract_models.entities.Branch.objects" />
+          <option value="apps.votingbasedevaluation.models.Vote.objects" />
+          <option value="apps.votingbasedevaluation.models.ReviewAnswer.objects" />
+          <option value="apps.tracking.models.DistanceCovered.objects" />
+          <option value="apps.user.models.Technician.objects" />
+          <option value="apps.user.models.Dealer.objects" />
+          <option value="apps.catalogue.models.Product.objects" />
+          <option value="apps.user.models.Admin.objects" />
+          <option value="apps.infrastructure.models.Branch.objects" />
+          <option value="apps.infrastructure.models.Warehouse.objects" />
+          <option value="apps.catalogue.models.Brand.objects" />
+          <option value="apps.catalogue.models.ProductGroup.objects" />
+          <option value="apps.catalogue.models.Category.objects" />
+          <option value="apps.stockrecord.models.StockLog.objects" />
+          <option value="apps.petty.models.Petty.objects" />
+          <option value="apps.leave.models.LeaveType.objects" />
+          <option value="apps.leave.models.Holiday.objects" />
+          <option value="apps.leave.models.WorkingDay.objects" />
+          <option value="apps.leave.models.LeaveRequest.object" />
+          <option value="apps.leave.models.LeaveRequest.objects" />
+          <option value="qr.models.CustomerData.objects" />
+          <option value="qr.models.QRCodeScanHistory.objects" />
+          <option value="apps.stockrecord.abstract_models.salesenquiries.SalesEnquiryLog.objects" />
+          <option value="apps.executivetracking.models.Lead.objects" />
+          <option value="apps.user.models.Executive.objects" />
+          <option value="apps.infrastructure.models.Route.objects" />
+          <option value="apps.order.models.Order.objects" />
+          <option value="apps.executivetracking.models.CrashReport.objects" />
+          <option value="django.http.request.HttpRequest.session" />
+          <option value="apps.executivetracking.models.CheckInDay.objects" />
+          <option value="apps.dashboard.custom.models.InAppBanner.objects" />
+          <option value="django.db.models.fields.PositiveSmallIntegerField.__add__" />
+          <option value="apps.payslip.models.MonthlyPaymentSummery.objects" />
+          <option value="apps.stockrecord.abstract_models.stockrecord.StockRecord.objects" />
+          <option value="apps.stockrecord.abstract_models.packingslips.PackingSlip.objects" />
+          <option value="apps.stockrecord.abstract_models.stock_log.StockLogGrouper.objects" />
+          <option value="apps.stockrecord.abstract_models.salesenquiries.SalesEnquiry.objects" />
+          <option value="apps.payslip.models.AttendanceData.objects" />
+          <option value="type.objects" />
+          <option value="apps.user.models.User.organization_instance" />
+          <option value="apps.accounts.models.ProformaInvoice.objects" />
+          <option value="apps.infrastructure.models.District.objects" />
+          <option value="apps.executivetracking.models.CheckPoint.objects" />
+          <option value="apps.leave.models.LateAttendance.objects" />
+          <option value="apps.stockrecord.abstract_models.stock_log.StockLog.objects" />
+          <option value="apps.catalogue.models.SubCategory.objects" />
+          <option value="apps.users.models.Location.objects" />
+          <option value="apps.availability.models.Zones.objects" />
+          <option value="apps.order.models.TimeSlot.objects" />
+          <option value="apps.order.models.TimeSlot.orders" />
+          <option value="apps.order.models.TimeSlotConfiguration.objects" />
+          <option value="apps.damagedstockrecord.models.DamagedStockLog.objects" />
+          <option value="apps.damagedstockrecord.models.DamagedStockRecord.objects" />
+          <option value="apps.catalogue.models.ProductGallery.objects" />
+          <option value="apps.rfq.models.RFQ.objects" />
+          <option value="apps.documents.models.UserDocument.objects" />
+          <option value="apps.documents.models.SharedDocument.objects" />
+          <option value="apps.documents.models.Circular.objects" />
+          <option value="django.db.models.fields.related.ForeignKey.images" />
+          <option value="apps.catalogue.reviews.models.ProductReviewImage.objects" />
+          <option value="apps.catalogue.models.Product.reviews" />
+          <option value="apps.quotation.models.Brand.objects" />
+          <option value="apps.quotation.models.Quotation.objects" />
+          <option value="apps.quotation.models.Category.objects" />
+          <option value="apps.user.models.Customer.objects" />
+          <option value="apps.quotation.models.Product.objects" />
+          <option value="apps.quotation.models.Line.objects" />
+          <option value="apps.order.models.Line.objects" />
+          <option value="oscar.apps.customer.utils" />
+          <option value="apps.order.models.Order.lines" />
+          <option value="django.db.models.fields.files.ImageField.url" />
+          <option value="apps.order.models.PaymentEventType.objects" />
+          <option value="apps.dashboard.custom.models.HomePageMegaBanner.objects" />
+          <option value="oscar.apps.catalogue.models.ProductCategory.objects" />
+          <option value="apps.catalogue.management.commands.reread_price.Command.read_stock_and_price" />
+          <option value="apps.zeno.models.IntegrationEvent.objects" />
+          <option value="object.dispatch" />
+          <option value="apps.zeno.views.validation.ViewValidationMixin.serializer_class" />
+          <option value="django.db.models.base.Model.objects" />
+          <option value="django.db.models.base.Model.DoesNotExist" />
+          <option value="apps.zeno.views.validation.ViewValidationMixin._event_obj" />
+          <option value="survey_app.models.Question.generate_options" />
+          <option value="survey_app.models.Option.objects" />
+          <option value="survey_app.models.Survey.objects" />
+          <option value="survey_app.models.Answer.objects" />
+          <option value="apps.zeno.views.validation.ViewValidationMixin.get_data" />
+          <option value="apps.zeno.views.validation.ViewValidationMixin.request" />
+          <option value="apps.order.models.OrderSubGroup.partner_id" />
+          <option value="django.db.models.fields.related.ForeignKey.lines" />
+          <option value="apps.user.models.SalesStaffDesignation.objects" />
+          <option value="apps.user.models.Manufacture.objects" />
+          <option value="apps.user.models.DealerCategory.objects" />
+          <option value="survey_app.models.Group.answer_set" />
+          <option value="apps.order.models.OrderGroup.objects" />
+          <option value="apps.order.models.Order.status_changes" />
+          <option value="apps.basket.models.WishList.objects" />
+          <option value="django.contrib.flatpages.models.FlatPage.objects" />
+          <option value="apps.availability.models.PartnerShippingAddressMap.id" />
+          <option value="apps.availability.models.PartnerShippingAddressMap.objects" />
+          <option value="oscar.apps.payment.models.SourceType.objects" />
+          <option value="razorpay.client.Client.payment" />
+          <option value="apps.payment.models.COD.objects" />
+          <option value="apps.logistics.models.DeliveryTrip.objects" />
+          <option value="apps.logistics.models.ConsignmentDelivery.objects" />
+          <option value="apps.logistics.models.ConsignmentReturn.objects" />
+          <option value="apps.order.models.OrderStatusChange.objects" />
+          <option value="apps.logistics.models.SlotObject.objects" />
+          <option value="apps.order.models.Order.sources" />
+          <option value="application.models.Project.objects" />
+          <option value="apps.dashboard.custom.models.SiteConfig.objects" />
+          <option value="fegtwitterapp.models.UserTweet.objects" />
+          <option value="catalogue.models.Catalogue.objects" />
+          <option value="catalogue.models.CatalogueImage.objects" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
