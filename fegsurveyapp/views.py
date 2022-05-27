@@ -4,8 +4,8 @@ from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
-from fegsurveyapp.forms import SurveyForm, QuestionForm, OptionForm, BaseAnswerFormSet, AnswerForm
-from fegsurveyapp.models import Survey, Question, Answers, SurveyEntry, Answer
+from fegsurveyapp.forms import SurveyForm, QuestionForm, OptionForm
+from fegsurveyapp.models import Survey, Question, Answers, SurveyEntry
 
 
 # def homepage(request):
@@ -111,14 +111,13 @@ def survey_details(request, pk):
         survey = Survey.objects.prefetch_related("question_set__answers_set").get(pk=pk, is_active=True)
     except Survey.DoesNotExist:
         raise Http404("Sorry No Surveys Activated")
-
     questions = survey.question_set.all()
-    for question in questions:
-        option_keys = question.answers_set.values_list("pk", flat=True)
-        total_answers = Answer.objects.filter(answers_id__in=option_keys).count()
-        for option in question.answers_set.all():
-            num_answers = Answer.objects.filter(answers=option).count()
-            option.percent = 100.0 * num_answers / total_answers if total_answers else 0
+    # for question in questions:
+    #     option_keys = question.answers_set.values_list("pk", flat=True)
+    #     total_answers = Answers.objects.filter(answers_id__in=option_keys).count()
+    #     for option in question.answers_set.all():
+    #         num_answers = Answers.objects.filter(answers=option).count()
+    #         option.percent = 100.0 * num_answers / total_answers if total_answers else 0
     return render(request, "details.html", {"survey": survey, "questions": questions})
 
 
@@ -140,56 +139,41 @@ def attend_survey(request):
 def survey_starts(request, pk):
     """can start a survey using this function"""
     survey = get_object_or_404(Survey, pk=pk)
-    print(survey)
+    print("survey list", survey)
     if request.method == "POST":
         ans = SurveyEntry.objects.create(survey=survey)
-        print(ans)
+        print("answer created", ans)
         return redirect("survey_submit", survey_pk=pk, ans_pk=ans.pk)
     return render(request, "surveystart.html", {"survey": survey})
-
-
-def survey_submit(request, survey_pk, ans_pk):
-    """Survey-taker submit their completed survey."""
-    try:
-        print("haloo enteres survey_submit")
-        survey = Survey.objects.prefetch_related("question_set__answers_set").get(
-            pk=survey_pk, is_active=True)
-        print("survey", survey)
-    except Survey.DoesNotExist:
-        raise Http404()
-
-    try:
-        sub = survey.surveyentry_set.get(pk=ans_pk, is_complete=False)
-    except SurveyEntry.DoesNotExist:
-        raise Http404()
-    # gathering all questions related to survey
-    questions = survey.question_set.all()
-    # gathering all answers related to question
-    options = [q.answers_set.all() for q in questions]
-    form_kwargs = {"empty_permitted": False, "options": options}
-    print("ssds", form_kwargs)
-    AnswerFormSet = formset_factory(AnswerForm, extra=len(questions), formset=BaseAnswerFormSet)
-    if request.method == "POST":
-        formset = AnswerFormSet(request.POST, form_kwargs=form_kwargs)
-        if formset.is_valid():
-            with transaction.atomic():
-                for form in formset:
-                    Answer.objects.create(answers_id=form.cleaned_data["option"], surveyentry_id=ans_pk)
-                sub.is_complete = True
-                sub.save()
-            return redirect("survey_thanks", pk=survey_pk)
-
-    else:
-        formset = AnswerFormSet(form_kwargs=form_kwargs)
-        print("formset", formset)
-
-    question_forms = zip(questions, formset)
-    print(question_forms)
-    return render(request, "surveysubmit.html",
-                  {"survey": survey, "question_forms": question_forms, "formset": formset})
 
 
 def survey_thanks(request, pk):
     """Survey-taker receives a thank-you message."""
     survey = get_object_or_404(Survey, pk=pk, is_active=True)
     return render(request, "surveythanks.html", {"survey": survey})
+
+
+def survey_submit(request, survey_pk, ans_pk):
+    """Survey-taker submit their completed survey."""
+    try:
+        survey = Survey.objects.prefetch_related("question_set__answers_set").get(pk=survey_pk, is_active=True)
+        print("survey", survey)
+    except Survey.DoesNotExist:
+        raise Http404("Sorry No Surveys Activated")
+    try:
+        sub = SurveyEntry.objects.get(pk=ans_pk)
+        print(sub)
+    except SurveyEntry.DoesNotExist:
+        raise Http404()
+    questions = survey.question_set.all()
+    if request.method == "POST":
+        request.POST._mutable = True
+        formdata = request.POST
+        del formdata['csrfmiddlewaretoken']
+        print(formdata)
+        for key, values in formdata.items():
+            print("key", key, 'value', values)
+    return render(request, "surveysubmit.html", {"survey": survey, "questions": questions})
+
+
+

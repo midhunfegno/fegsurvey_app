@@ -47,12 +47,15 @@ class SurveyEntry(models.Model):
     email = models.EmailField(max_length=255)
     submit_date = models.DateTimeField(auto_now_add=True)
     is_complete = models.BooleanField(default=False, null=True)
+    answers = models.ManyToManyField(Answers, null=True)
 
     def __str__(self):
         return f'self.name'
 
+#
+# class Answer(models.Model):
+#     """An answer a survey's questions."""
+#     surveyentry = models.ForeignKey(SurveyEntry, on_delete=models.CASCADE, null=True)
+#     answers = models.ForeignKey(Answers, on_delete=models.CASCADE, null=True)
 
-class Answer(models.Model):
-    """An answer a survey's questions."""
-    surveyentry = models.ForeignKey(SurveyEntry, on_delete=models.CASCADE, null=True)
-    answers = models.ForeignKey(Answers, on_delete=models.CASCADE, null=True)
+

@@ -1,25 +1,29 @@
 {% extends 'index.html' %}
 {% block content %}
-<div class="row">
-    <div class="col-md-12">
-        <div class="tile">
-            <h1>Your answers to {{ survey.title }}</h1>
-            <form method="post">
-                {% csrf_token %}
-                {{ formset.management_form }}
-                {% for question, form in question_forms %}
-                <h4>
-                    Question {{ forloop.counter }}: {{ question.text }}
-                </h4>
-                    {% for field in form %}
-                <div>
-                    {{ field }}
+
+<form action="" method="POST">
+    {% csrf_token %}
+<div class="tile">
+    <div class="tile-body"><h1>{{ survey.title }}</h1></div>
+    {% for question in questions %}
+            <div >
+                <div class="card-body">
+                    <blockquote class="card-blockquote">
+                        <h2>Question {{ forloop.counter }} / {{ questions|length }}:&nbsp; {{ question.text }}</h2>
+                        {% for option in question.answers_set.all %}
+                        <footer>
+                            <cite title="Source Title">
+                                <input name="{{question.id}}" type="{{ question.answer_type }}" value="{{option.text}}">
+                                &nbsp; &nbsp; {{option.text}}</cite>
+                        </footer>
+                        <br>
+                        {% endfor %}
+                    </blockquote>
                 </div>
-                    {% endfor %}
-                {% endfor %}
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-    </div>
+            </div>
+    {% endfor %}
+    <br><br>
+    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
 </div>
+</form>
 {% endblock %}
