@@ -171,8 +171,11 @@ def survey_submit(request, survey_pk, ans_pk):
         formdata = request.POST
         del formdata['csrfmiddlewaretoken']
         print(formdata)
-        for key, values in formdata.items():
-            print("key", key, 'value', values)
+        for key in formdata:
+            for d in formdata[key]:
+                print(key,d)
+
+            print(key,formdata[key])
     return render(request, "surveysubmit.html", {"survey": survey, "questions": questions})
 
 
