@@ -9,7 +9,7 @@
         {% for option in options %}
         <div class="list-group">
             <a class="list-group-item">{{ forloop.counter }}) {{ option.text }}</a>
-            <button class="btn btn-danger btn-lg remove-form-btn">-</button>&nbsp;&nbsp;&nbsp;
+<!--            <button class="btn btn-danger btn-lg remove-form-btn">-</button>&nbsp;&nbsp;&nbsp;-->
         </div>
         {% endfor %}
         <br>
@@ -20,7 +20,7 @@
         </div>
         <br>
         <br>
-        <button class="btn btn-info btn-lg ">+</button>&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-info btn-lg ">ADD Options</button>&nbsp;&nbsp;&nbsp;
         {% endfor %}
     </form>
     <div class="tile-footer">
@@ -41,11 +41,11 @@
 
         })
     });
-        $(document).on("click", ".remove-form-btn", function(e) {
-            e.preventDefault();
-            let row_items = $(this).parent();
-            $(row_items).remove();
-        });
+<!--        $(document).on("click", ".remove-form-btn", function(e) {-->
+<!--            e.preventDefault();-->
+<!--            let row_items = $(this).parent();-->
+<!--            $(row_items).remove();-->
+<!--        });-->
 
 
     </script>

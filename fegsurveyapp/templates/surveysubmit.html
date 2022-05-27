@@ -1,18 +1,25 @@
-{% include 'index.html' %}
-<div >
-    <h1 >Your answers to {{ survey.title }}</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ formset.management_form }}
-        {% for question, form in question_forms %}
-        <div>
-            <div>
+{% extends 'index.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <h1>Your answers to {{ survey.title }}</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ formset.management_form }}
+                {% for question, form in question_forms %}
                 <h4>
-                    Question {{ forloop.counter }}: {{ question.prompt }}
+                    Question {{ forloop.counter }}: {{ question.text }}
                 </h4>
-            </div>
-        {% endfor %}
+                    {% for field in form %}
+                <div>
+                    {{ field }}
+                </div>
+                    {% endfor %}
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </div>
 </div>
+{% endblock %}

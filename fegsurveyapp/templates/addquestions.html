@@ -2,7 +2,7 @@
 {% block title %}Question - Surveys{% endblock %}
 {% block content %}
 <div class="tile">
-    <div class="tile-body">Add Questions to <h1>"{{survey.title}}"</div><br><br>
+    <div class="tile-body">Add Questions to <br><br> <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"{{survey.title}}"</h1></div><br>
     <form class="form-horizontal" method="post">
         {% csrf_token %}
         {% for fields in form %}
