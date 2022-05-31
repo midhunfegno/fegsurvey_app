@@ -1,17 +1,18 @@
 from django.forms import ModelForm, CharField, TextInput, Select, BaseFormSet, Form, RadioSelect, ChoiceField, \
     EmailField
 
-from fegsurveyapp.models import Survey, Question, Answers, SurveyEntry
+from fegsurveyapp.models import Survey, Question, Options, SurveyEntry
 
 CHOICE_VALUE = [
     ('text', 'Textbox'),
     ('radio', 'Radio Button'),
     ('checkbox', 'Checkbox'),
+    ('date', 'Date'),
 ]
 
 
 class SurveyForm(ModelForm):
-    title = CharField(widget=TextInput(attrs={'class': 'form-control'}))
+    title = CharField(widget=TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your Survey title here'}))
 
     class Meta:
         model = Survey
@@ -37,8 +38,23 @@ class OptionForm(ModelForm):
     }))
 
     class Meta:
-        model = Answers
+        model = Options
         fields = ["text"]
+
+
+class AttendSurveyForm(ModelForm):
+    name = CharField(widget=TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Enter your Name here'
+    }))
+    text = EmailField(widget=TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Enter your Email address here'
+    }))
+
+    class Meta:
+        model = SurveyEntry
+        fields = ['name', 'email']
 
 
 # class AnswerForm(Form):

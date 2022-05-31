@@ -12,11 +12,11 @@
                 <div class="card-body">
                     <blockquote class="card-blockquote">
                         <h2>Question {{ forloop.counter }} / {{ questions|length }}:&nbsp; {{ question.text }}</h2>
-                        {% for option in question.answers_set.all %}
+                        {% for option in question.options_set.all %}
                         <footer>
                             <cite title="Source Title">
-                                <input type="{{ question.answer_type }}">
-                                &nbsp; &nbsp; {{option.text}}: {{ option.percent|floatformat }}%</cite>
+<!--                                <input type="{{ question.answer_type }}">-->
+                                &nbsp; {{ forloop.counter }}&nbsp; {{option.text}}: {{ option.percent|floatformat }}%</cite>
                         </footer>
                         <br>
                         {% endfor %}

@@ -1,29 +1,35 @@
 {% extends 'index.html' %}
 {% block content %}
-
 <form action="" method="POST">
     {% csrf_token %}
-<div class="tile">
-    <div class="tile-body"><h1>{{ survey.title }}</h1></div>
-    {% for question in questions %}
-            <div >
-                <div class="card-body">
-                    <blockquote class="card-blockquote">
-                        <h2>Question {{ forloop.counter }} / {{ questions|length }}:&nbsp; {{ question.text }}</h2>
-                        {% for option in question.answers_set.all %}
-                        <footer>
-                            <cite title="Source Title">
-                                <input name="{{question.id}}" type="{{ question.answer_type }}" value="{{option.text}}">
-                                &nbsp; &nbsp; {{option.text}}</cite>
-                        </footer>
-                        <br>
-                        {% endfor %}
-                    </blockquote>
-                </div>
+    <div class="tile">
+        <div class="tile-body"><h1>{{ survey.title }}</h1></div>
+        {% for question in questions %}
+        <div>
+            <div class="card-body">
+                <blockquote class="card-blockquote">
+                    <h2>Question {{ forloop.counter }} / {{ questions|length }}:&nbsp; {{ question.text }}</h2>
+                    {% if question.answer_type == "text" %}
+                        <input type="text" name="{{ question.id }}" class="form-control">
+                    {% elif question.answer_type == "date" %}
+                        <input type="date" name="{{ question.id }}" class="form-control">
+                    {% for option in question.options_set.all %}
+                    <footer>
+                        <cite title="Source Title">
+                            <input name="{{question.id}}" type="{{ question.answer_type }}" value="{{option.id}}">
+                            &nbsp; &nbsp; {{option.text}}
+                        </cite>
+                    </footer>
+                    <br>
+                    {% endfor %}
+                    {% endif %}
+                </blockquote>
             </div>
-    {% endfor %}
-    <br><br>
-    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-</div>
+        </div>
+        {% endfor %}
+        <br><br>
+        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+    </div>
 </form>
 {% endblock %}
+

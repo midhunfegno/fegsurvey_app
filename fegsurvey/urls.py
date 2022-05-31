@@ -16,8 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from fegsurveyapp import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('dashboard/', include('fegsurveyapp.urls')),
-    path('', include('fegsurveyapp.urls')),
+    # path('', include('fegsurveyapp.urls')),
+    path("", views.attend_survey, name="attend_survey"),
+    path("start/<int:pk>/", views.survey_starts, name="survey_start"),
+    path("<int:survey_pk>/submit/", views.survey_submit, name="survey_submit"),
+    # path("survey/<int:survey_pk>/submit/<int:surveyentry_pk>/", views.survey_submit, name="survey_submit"),
+    path("<int:pk>/thanks/", views.survey_thanks, name="survey_thanks"),
 ]
