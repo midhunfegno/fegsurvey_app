@@ -1,14 +1,16 @@
-
+from django.contrib.auth.models import User
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
-
+from django.contrib.auth.views import LoginView
 # Create your views here.
-from fegsurveyapp.forms import SurveyForm, QuestionForm, OptionForm
+from django.views.generic import CreateView, TemplateView
+
+from fegsurveyapp.forms import SurveyForm, QuestionForm, OptionForm, LoginForms
 from fegsurveyapp.models import Survey, Question, Options, SurveyEntry
 
 
-# def homepage(request):
-#     return render(request, 'index.html')
+class AdminLogin(LoginView):
+    template_name = "loginpage.html"
 
 
 def surveypage(request):
@@ -35,7 +37,6 @@ def surveycreatepage(request):
 def surveyedit(request, pk):
     """can add questions to a draft survey, then acitvate the survey"""
     try:
-
         survey = Survey.objects.get(pk=pk, is_active=False)
         print("Survey Name:", survey)
     except Survey.DoesNotExist:
@@ -97,12 +98,16 @@ def survey_details(request, pk):
     except Survey.DoesNotExist:
         raise Http404("Sorry No Surveys Activated")
     questions = survey.question_set.all()
-    # for question in questions:
-    #     option_keys = question.answers_set.values_list("pk", flat=True)
-    #     total_answers = Options.objects.filter(answers_id__in=option_keys).count()
-    #     for option in question.answers_set.all():
-    #         num_answers = Options.objects.filter(answers=option).count()
-    #         option.percent = 100.0 * num_answers / total_answers if total_answers else 0
+    # print("Questions", questions)
+    """    Here ANALYTICS CODE HAS TO BE WRITTEN     """
+    for question in questions:
+        option_pks = question.options_set.all().values_list("pk", flat=True)
+        total_answers = SurveyEntry.objects.filter(answers__in=option_pks).count()
+        # print("analytics option,total_answers", option_pks, total_answers)
+        for option in question.options_set.all():
+            num_answers = SurveyEntry.objects.filter(answers=option).count()
+            # print("num_answer", num_answers)
+            option.percent = 100.0 * num_answers / total_answers if total_answers else 0
     return render(request, "details.html", {"survey": survey, "questions": questions})
 
 
@@ -118,6 +123,7 @@ def surveydelete(request, pk):
     if request.method == "POST":
         survey.delete()
     return redirect("surveypage")
+
 
 """
 Survey Entry part
@@ -175,7 +181,7 @@ def survey_submit(request, survey_pk):
                         surveydata.answertext = answervalue
                         surveydata.save()
                         print("answer textss:", surveydata.answertext)
-        return redirect("survey_thanks", survey_pk)
+        return redirect("attend_survey")
         # print(list(SurveyEntry.objects.all().values()))
     return render(request, "surveysubmit.html", {"survey": survey, "questions": questions})
 
@@ -184,3 +190,4 @@ def survey_thanks(request, pk):
     """Survey-taker receives a thank-you message."""
     survey = Survey.objects.filter(pk=pk).all()
     return render(request, "surveythanks.html", {"surveys": survey})
+

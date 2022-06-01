@@ -1,3 +1,6 @@
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.forms import ModelForm, CharField, TextInput, Select, BaseFormSet, Form, RadioSelect, ChoiceField, \
     EmailField
 
@@ -55,6 +58,12 @@ class AttendSurveyForm(ModelForm):
     class Meta:
         model = SurveyEntry
         fields = ['name', 'email']
+
+
+class LoginForms(ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password']
 
 
 # class AnswerForm(Form):

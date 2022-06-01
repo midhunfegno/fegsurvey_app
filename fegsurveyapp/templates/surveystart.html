@@ -1,8 +1,8 @@
-{% extends "index.html" %}
-{% block title %}Start - Surveys{% endblock %}
-
-{% block content %}
+{% extends 'attendsurveylist.html' %}
+{% block survey %}
 <div>
+    <br>
+    <br>
     <h1>{{ survey.title }}
         <div>You have been invited to take this survey</div>
     </h1>
@@ -12,19 +12,3 @@
     </form>
 </div>
 {% endblock %}
-
-
-
-
-
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Title</title>-->
-<!--</head>-->
-<!--<body>-->
-
-<!--</body>-->
-<!--</html>-->
