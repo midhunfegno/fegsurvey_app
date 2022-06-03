@@ -1,18 +1,20 @@
 {% extends 'attendsurveylist.html' %}
 {% block survey %}
+<div class="row" style="margin:20px 40px;">
 <form action="" method="POST">
     {% csrf_token %}
     <div class="tile">
         <div class="tile-body"><h1>{{ survey.title }}</h1></div>
+        <br><br>
         {% for question in questions %}
         <div>
             <div class="card-body">
                 <blockquote class="card-blockquote">
-                    <h2>Question {{ forloop.counter }} / {{ questions|length }}:&nbsp; {{ question.text }}</h2>
+                    <h3>Question {{ forloop.counter }} / {{ questions|length }}:&nbsp; {{ question.text }}</h3>
                     {% if question.answer_type == "text" %}
-                        <input type="text" name="{{ question.id }}" class="form-control col-md-6">
+                    <input type="text" name="{{ question.id }}" class="form-control col-md-6">
                     {% elif question.answer_type == "date" %}
-                        <input type="date" name="{{ question.id }}" class="form-control col-md-6">
+                    <input type="date" name="{{ question.id }}" class="form-control col-md-6">
                     {% else %}
                     {% for option in question.options_set.all %}
                     <footer>
@@ -30,8 +32,12 @@
         {% endfor %}
         <br><br>
         <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+        {% for message in messages %}
+
+        {% endfor %}
     </div>
 </form>
+</div>
 {% endblock %}
 
 

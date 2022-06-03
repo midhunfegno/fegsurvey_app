@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-CHOICES = ((1, 'BAD'), (2, 'AVERAGE'), (3, 'GOOD'), (4, 'Excellent'))
+# CHOICES = ((1, 'BAD'), (2, 'AVERAGE'), (3, 'GOOD'), (4, 'Excellent'))
 CHOICE_VALUE = [
     ('text', 'Textbox'),
     ('radio', 'Radio Button'),
@@ -39,7 +39,7 @@ class SurveyEntry(models.Model):
     """A set of answers a survey's questions."""
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE, null=True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
-    name = models.CharField(max_length=255,null=True)
+    name = models.CharField(max_length=255, null=True)
     email = models.EmailField(max_length=255)
     submit_date = models.DateTimeField(auto_now_add=True)
     is_complete = models.BooleanField(default=False, null=True)

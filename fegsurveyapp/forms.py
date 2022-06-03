@@ -1,8 +1,5 @@
-from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
-from django.forms import ModelForm, CharField, TextInput, Select, BaseFormSet, Form, RadioSelect, ChoiceField, \
-    EmailField
+from django.forms import ModelForm, CharField, TextInput, Select, EmailField
 
 from fegsurveyapp.models import Survey, Question, Options, SurveyEntry
 
@@ -48,11 +45,11 @@ class OptionForm(ModelForm):
 class AttendSurveyForm(ModelForm):
     name = CharField(widget=TextInput(attrs={
         'class': 'form-control',
-        'placeholder': 'Enter your Name here'
+        'placeholder': 'Enter your Name here',
     }))
-    text = EmailField(widget=TextInput(attrs={
+    email = CharField(widget=TextInput(attrs={
         'class': 'form-control',
-        'placeholder': 'Enter your Email address here'
+        'placeholder': 'Enter your Email address here',
     }))
 
     class Meta:
@@ -64,24 +61,3 @@ class LoginForms(ModelForm):
     class Meta:
         model = User
         fields = ['username', 'password']
-
-
-# class AnswerForm(Form):
-#     def __init__(self, *args, **kwargs):
-#         options = kwargs.pop("options")
-#         # Options must be a list of Option objects
-#         choices = {(opt.pk, opt.text) for opt in options}
-#         super().__init__(*args, **kwargs)
-#         option_field = ChoiceField(choices=choices, widget=RadioSelect, required=True)
-#         self.fields["option"] = option_field
-#
-#
-# class BaseAnswerFormSet(BaseFormSet):
-#     """
-#     A collection of instances of the same Form class ie,.....(AnswerForm)
-#     """
-#     def get_form_kwargs(self, index):
-#         kwargs = super().get_form_kwargs(index)
-#         kwargs["options"] = kwargs["options"][index]
-#         return kwargs
-

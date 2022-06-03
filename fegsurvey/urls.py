@@ -24,7 +24,7 @@ urlpatterns = [
     # path('', include('fegsurveyapp.urls')),
     path("", views.attend_survey, name="attend_survey"),
     path("survey/<int:pk>/", views.survey_starts, name="survey_start"),
-    path("survey/<int:survey_pk>/submit/", views.survey_submit, name="survey_submit"),
+    path("survey/<int:survey_pk>/submit/<str:name>/<str:email>/", views.survey_submit, name="survey_submit"),
     # path("survey/<int:survey_pk>/submit/<int:surveyentry_pk>/", views.survey_submit, name="survey_submit"),
     path("survey/<int:pk>/thanks/", views.survey_thanks, name="survey_thanks"),
 ]
